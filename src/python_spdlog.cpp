@@ -75,7 +75,9 @@ namespace pyspdlog
 
 }
 
-PYBIND11_MODULE(libpyspdlog,m)
+PYBIND11_PLUGIN(libpyspdlog)
 {
+  py::module m("libpyspdlog");
   pyspdlog::Exportspdlog(m);
+  return m.ptr();
 }
