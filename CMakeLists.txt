@@ -21,15 +21,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
 find_package(PythonInterp 3 REQUIRED)
 find_package(PythonLibs 3 REQUIRED)
 
-# check if CMAKE_INSTALL_PREFIX is set by user, if not install in python dir
-message("Python install dir = ${PYTHON_INSTALL_DIR}")
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set(CMAKE_INSTALL_PREFIX ${PYTHON_INSTALL_DIR} CACHE PATH "Install dir" FORCE)
-endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-
 include(ExternalProject)
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/external_projects/spdlog.cmake)
 include_directories(${SPDLOG_INCLUDE_DIR})
+
+# install the spdlog headers along with the pyspdlog header
+install(DIRECTORY ${SPDLOG_INCLUDE_DIR} DESTINATION pyspdlog/include)
 
 add_subdirectory(external_dependencies/pybind11)
 add_subdirectory(src)
