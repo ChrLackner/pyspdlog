@@ -44,6 +44,7 @@ namespace pyspdlog
       .def("error", (void (spd::logger::*)(const string&)) &spd::logger::error)
       .def("critical", (void (spd::logger::*)(const string&)) &spd::logger::critical)
       .def("SetPattern", &spd::logger::set_pattern)
+      .def("flush", &spd::logger::flush)
       ;
 
     m.def("simple_file_sink", [](const string& filename, bool multithreaded)
