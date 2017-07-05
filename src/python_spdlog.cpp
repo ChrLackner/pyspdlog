@@ -43,7 +43,7 @@ namespace pyspdlog
       .def("warn", (void (spd::logger::*)(const string&)) &spd::logger::warn)
       .def("error", (void (spd::logger::*)(const string&)) &spd::logger::error)
       .def("critical", (void (spd::logger::*)(const string&)) &spd::logger::critical)
-      .def("SetPattern", &spd::logger::set_pattern)
+      .def("SetPattern", (void (spd::logger::*)(const string&)) &spd::logger::set_pattern)
       .def("flush", &spd::logger::flush)
       ;
 

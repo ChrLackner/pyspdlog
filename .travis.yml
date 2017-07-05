@@ -1,0 +1,35 @@
+language: python
+python:
+        - "3.4"
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+
+before_install:
+        - eval "${MATRIX_EVAL}"
+        - pip3 install pytest
+
+
+install:
+        - mkdir build
+        - cd build
+        - cmake .. -DCMAKE_INSTALL_PREFIX=~/install/python
+                   -DCMAKE_CXX_COMPILER=g++-6
+                   -DCMAKE_C_COMPILER=gcc-6
+        - make -j 6
+        - make install
+        - export PYTHONPATH=$PYTHONPATH:~/install/python
+        - export OMP_NUM_THREADS=4
+
+script:
+        - make test ARGS=-V
