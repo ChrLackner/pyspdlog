@@ -35,6 +35,4 @@ add_subdirectory(python)
 
 
 include(CTest)
-if(BUILD_TESTING)
-  add_subdirectory(tests)
-endif(BUILD_TESTING)
+add_subdirectory(tests)
