@@ -6,8 +6,6 @@ namespace py = pybind11;
 
 namespace pyspdlog
 {
-  LoggingHandler loggers;
-
   void Exportspdlog(py::module m)
   { 
     py::enum_<spd::level::level_enum>
@@ -47,6 +45,11 @@ namespace pyspdlog
       .def("flush", &spd::logger::flush)
       ;
 
+    py::class_<LoggedClass, shared_ptr<LoggedClass>>
+      (m, "LoggedClass")
+      .def("SetLogger", &LoggedClass::SetLogger)
+      ;
+
     m.def("simple_file_sink", [](const string& filename, bool multithreaded)
           {
             std::remove(filename.c_str());
@@ -66,11 +69,6 @@ namespace pyspdlog
             else
               sink = make_shared<spd::sinks::ansicolor_stdout_sink_st>();
             return sink;
-          });
-  
-    m.def("SetLogger", [] (const string & name, shared_ptr<spd::logger> log)
-          {
-            loggers.setLogger(name,log);
           });
   }
 

@@ -14,31 +14,18 @@ namespace pyspdlog
   namespace spd = spdlog;
   using namespace std;
 
-  class LoggingHandler
+  class LoggedClass
   {
-  private:
-    shared_ptr<spd::logger> nullLogger;
-    map<string,shared_ptr<spd::logger>> loggers;
+  protected:
+    shared_ptr<spd::logger> log;
   public:
-    LoggingHandler()
+    LoggedClass(string name)
     {
-      nullLogger = make_shared<spd::logger>("nullLogger",make_shared<spd::sinks::null_sink_st>());
+      log = make_shared<spd::logger>(name, make_shared<spd::sinks::ansicolor_stdout_sink_mt>());
     }
-    shared_ptr<spd::logger> getLogger(const string & name) const
-    {
-      auto it = loggers.find(name);
-      if(it == loggers.end())
-        return nullLogger;
-      return it->second;
-    }
-
-    void setLogger(string name, shared_ptr<spd::logger> log)
-    {
-      loggers[name] = log;
-    }
+    LoggedClass(shared_ptr<spd::logger> alog) : log(alog) { ; }
+    void SetLogger(shared_ptr<spd::logger> alog) { log = alog; }
   };
-
-  extern LoggingHandler loggers;
 }
 
 #endif // __FILE_PYSPDLOG_HPP

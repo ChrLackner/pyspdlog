@@ -10,7 +10,6 @@ def test_logger():
     logger.SetLevel(LOGGING_LEVEL.DEBUG)
     file_sink.SetLevel(LOGGING_LEVEL.DEBUG)
     con_sink.SetLevel(LOGGING_LEVEL.INFO)
-    SetLogger("Geometry",logger)
     logger.info("Hi")
     logger.debug("debug")
     logger.flush()
