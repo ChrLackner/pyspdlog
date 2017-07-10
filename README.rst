@@ -1,6 +1,6 @@
 Build status:
 
-.. image:: https://travis-ci.org/ChrLackner/pyspdlog?branch=master
+.. image:: https://travis-ci.org/ChrLackner/pyspdlog.svg?branch=master
    :target: https://travis-ci.org/ChrLackner/pyspdlog
 
 Pyspdlog is a Python export wrapper for `spdlog<https://github.com/gabime/spdlog>`_ using
