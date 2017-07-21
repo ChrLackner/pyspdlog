@@ -1,6 +1,11 @@
 #ifndef __FILE_PYSPDLOG_HPP
 #define __FILE_PYSPDLOG_HPP
 
+// uncomment to enable SPDLOG_DEBUG macro
+// #ifndef SPDLOG_DEBUG_ON
+// #define SPDLOG_DEBUG_ON
+// #endif
+
 #include <spdlog/spdlog.h>
 #include <spdlog/logger.h>
 #include <spdlog/sinks/sink.h>
