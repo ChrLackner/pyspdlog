@@ -35,12 +35,48 @@ namespace pyspdlog
              new (instance) spd::logger(name,std::begin(sinks),std::end(sinks));
            })
       .def("SetLevel", &spd::logger::set_level)
-      .def("debug", (void (spd::logger::*)(const string&)) &spd::logger::debug)
-      .def("trace", (void (spd::logger::*)(const string&)) &spd::logger::trace)
-      .def("info", (void (spd::logger::*)(const string&)) &spd::logger::info)
-      .def("warn", (void (spd::logger::*)(const string&)) &spd::logger::warn)
-      .def("error", (void (spd::logger::*)(const string&)) &spd::logger::error)
-      .def("critical", (void (spd::logger::*)(const string&)) &spd::logger::critical)
+      .def("debug", [](spd::logger& self, py::args args)
+           {
+             string st = "";
+             for (auto arg : args)
+               st += py::str(arg);
+             self.debug(st);
+           })
+      .def("trace", [](spd::logger& self, py::args args)
+           {
+             string st = "";
+             for (auto arg : args)
+               st += py::str(arg);
+             self.trace(st);
+           })
+      .def("info", [](spd::logger& self, py::args args)
+           {
+             string st = "";
+             for (auto arg : args)
+               st += py::str(arg);
+             self.info(st);
+           })
+      .def("warn", [](spd::logger& self, py::args args)
+           {
+             string st = "";
+             for (auto arg : args)
+               st += py::str(arg);
+             self.warn(st);
+           })
+      .def("error", [](spd::logger& self, py::args args)
+           {
+             string st = "";
+             for (auto arg : args)
+               st += py::str(arg);
+             self.error(st);
+           })
+      .def("critical", [](spd::logger& self, py::args args)
+           {
+             string st = "";
+             for (auto arg : args)
+               st += py::str(arg);
+             self.critical(st);
+           })
       .def("SetPattern", (void (spd::logger::*)(const string&)) &spd::logger::set_pattern)
       .def("flush", &spd::logger::flush)
       ;
