@@ -30,6 +30,7 @@ namespace pyspdlog
     }
     LoggedClass(shared_ptr<spd::logger> alog) : log(alog) { ; }
     void SetLogger(shared_ptr<spd::logger> alog) { log = alog; }
+    shared_ptr<spd::logger> GetLogger() { return log; }
   };
 }
 
