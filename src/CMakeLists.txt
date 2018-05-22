@@ -1,6 +1,6 @@
 
 
-pybind11_add_module(libpyspdlog SHARED python_spdlog.cpp)
+add_ngsolve_python_module(libpyspdlog SHARED python_spdlog.cpp)
 set_target_properties(libpyspdlog PROPERTIES SUFFIX ".so")
 
 
